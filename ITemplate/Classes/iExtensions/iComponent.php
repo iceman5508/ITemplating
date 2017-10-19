@@ -13,11 +13,26 @@ abstract class iComponent
 {
     private $component;
     private $page;
+    private static $exports = array();
 
+    /**
+     * Component class entry point
+     * iComponent constructor.
+     * @param $page - The template page the component is for
+     */
     public function __construct($page){
         $this->component = new iComponents();
         $this->page = $page;
     }
+
+    /**
+     * Return all variables
+     * @return array
+     */
+    public final function getAllVars(){
+        return $this->component->getVars();
+    }
+
 
     public function __destruct(){
         $this->component->__destruct();
@@ -35,12 +50,20 @@ abstract class iComponent
        return $this->component->__get($name);
     }
 
-    public final function getAllVars(){
-        return $this->component->getVars();
-    }
-
     public final function getPage(){
         return $this->page;
+    }
+
+    public static function export($componentName){
+        self::$exports[$componentName] = iTags::get($componentName);
+    }
+
+    public static function getExports(){
+        return self::$exports;
+    }
+
+    public static function getExport($componentName){
+        return self::$exports[$componentName];
     }
 
 

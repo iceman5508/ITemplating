@@ -9,7 +9,7 @@
 namespace ITemplate\iExtends;
 
 
-class iTags
+final class iTags
 {
     private static $tags = array();
 
@@ -22,7 +22,9 @@ class iTags
     {
         $content = file_get_contents($component->getPage());
         foreach ($component->getAllVars() as $var => $value){
-            $content = str_replace("{".$var."}", $value, $content);
+            if (strpos($content, $var) !== false) {
+                $content = str_replace("{" . $var . "}", $value, $content);
+            }
         }
         self::$tags[$tag] = $content;
     }

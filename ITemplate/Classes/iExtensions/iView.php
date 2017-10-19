@@ -12,7 +12,11 @@ use ITemplate\ibase\iTemplates;
 class iView extends iTemplates
 {
 
-    function __construct($tag)
+    /**
+     * iView setTag.
+     * @param $tag - The tag to process and view
+     */
+    function __setTag($tag)
     {
         $this->setContent(iTags::get($tag));
 

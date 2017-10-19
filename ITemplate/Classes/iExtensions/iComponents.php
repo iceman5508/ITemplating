@@ -15,6 +15,7 @@ final class iComponents
 {
     private $__vars = array();
 
+
     public function __destruct(){
         unset($this->__vars);
     }
