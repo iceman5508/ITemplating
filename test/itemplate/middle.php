@@ -13,7 +13,7 @@ class middle extends iComponent {
 }
 
 $middle = new middle('home.html');
-$middle->section = 'middle';
+$middle->section = "Isaac's shop";
 
 
 iTags::setTag('middle',$middle);

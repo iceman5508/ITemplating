@@ -13,7 +13,7 @@ class header extends iComponent {
 }
 
 $header = new header('header.html');
-$header->section = 'header';
+$header->title = 'Main Menu';
 
 
 iTags::setTag('header',$header);

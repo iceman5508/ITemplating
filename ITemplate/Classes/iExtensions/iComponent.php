@@ -33,6 +33,37 @@ abstract class iComponent
         return $this->component->getVars();
     }
 
+    /**
+     * Export a component to make it loadable in the viewManager
+     * @param $componentName
+     */
+    public static function export($componentName){
+        self::$exports[$componentName] = iTags::get($componentName);
+    }
+
+    /**
+     * Return the name of the page
+     * @return mixed
+     */
+    public final function getPage(){
+        return $this->page;
+    }
+
+    /**
+     * Return all exported components
+     * @return array
+     */
+    public static function getExports(){
+        return self::$exports;
+    }
+
+    /**Get a specific exported component
+     * @param $componentName
+     * @return mixed
+     */
+    public static function getExport($componentName){
+        return self::$exports[$componentName];
+    }
 
     public function __destruct(){
         $this->component->__destruct();
@@ -47,23 +78,7 @@ abstract class iComponent
 
     public final function __get($name)
     {
-       return $this->component->__get($name);
-    }
-
-    public final function getPage(){
-        return $this->page;
-    }
-
-    public static function export($componentName){
-        self::$exports[$componentName] = iTags::get($componentName);
-    }
-
-    public static function getExports(){
-        return self::$exports;
-    }
-
-    public static function getExport($componentName){
-        return self::$exports[$componentName];
+        return $this->component->__get($name);
     }
 
 

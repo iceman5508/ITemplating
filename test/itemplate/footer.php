@@ -13,7 +13,7 @@ class footer extends iComponent {
 }
 
 $footer = new footer('footer.html');
-$footer->section = 'footer';
+$footer->cpw = 'Isaac 2017';
 
 
 iTags::setTag('footer',$footer);

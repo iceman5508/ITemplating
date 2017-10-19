@@ -16,6 +16,13 @@ abstract class viewManager
 
     private $content;
     private $view;
+
+    /**
+     * Create the view manager for all exported components.
+     * Should only be ran after all components are registered
+     * viewManager constructor.
+     * @param $mainFile
+     */
     function __construct($mainFile)
     {
         $this->content = file_get_contents($mainFile);
@@ -28,10 +35,17 @@ abstract class viewManager
         $this->view->setContent($this->content);
     }
 
+    /**
+     * Render all components
+     */
     function render(){
         $this->view->render();
     }
 
+    /**
+     * Register a component
+     * @param $location - The location of the component php files.
+     */
     public static function registerComponent($location){
         require_once $location;
     }
