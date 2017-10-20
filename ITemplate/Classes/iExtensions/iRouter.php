@@ -16,7 +16,7 @@ class iRouter
     private static $route_param = null;
     private static $component=null;
     public static $route = null;
-    
+
     /**
      * Check if the router is called
      * @return bool
@@ -40,7 +40,7 @@ class iRouter
      * @param $componentLocation - The location of the php file containing the component
      */
     public static function call($route, $componentLocation){
-        self::$route_list[$route] = '';
+        self::$route_list[$route] = array(null,$componentLocation);
         require_once $componentLocation;
 
     }
@@ -51,7 +51,7 @@ class iRouter
      */
     public static function answer($route, iComponent $component){
         if(isset( self::$route_list[$route])){
-            self::$route_list[$route] = $component;
+            self::$route_list[$route][0] = $component;
         }
 
     }
@@ -65,8 +65,8 @@ class iRouter
             $data =  $path_parts['filename'];
             foreach (self::$route_list as $route => $component){
                 if($data == $route){
-                    self::$component = $component;
-                    self::$route = $route;
+                    self::$component = $component[0];
+                    self::$route = $component[1];
                 }
             }
         }else{
