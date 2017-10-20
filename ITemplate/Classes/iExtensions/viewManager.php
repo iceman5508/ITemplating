@@ -9,6 +9,7 @@
 namespace ITemplate\iExtends;
 use ITemplate\iExtends\iView;
 use ITemplate\iExtends\iComponent;
+use ITemplate\iExtends\iRouter;
 
 
 abstract class viewManager
@@ -48,6 +49,16 @@ abstract class viewManager
      */
     public static function registerComponent($location){
         require_once $location;
+    }
+
+    /**
+     * Connect view Manager to router
+     */
+    public static function router(){
+        if(iRouter::callMade()) {
+            iRouter::scanner();
+            viewManager::registerComponent(iRouter::$route.'/'.iRouter::$route.'.php');
+        }
     }
 
 
