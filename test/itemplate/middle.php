@@ -9,7 +9,10 @@ use ITemplate\iExtends\iComponent;
 use ITemplate\iExtends\iTags;
 
 class middle extends iComponent {
-
+    public function render()
+    {
+        // TODO: Implement render() method.
+    }
 }
 
 $middle = new middle('home.html');

@@ -9,7 +9,10 @@ use ITemplate\iExtends\iComponent;
 use ITemplate\iExtends\iTags;
 
 class header extends iComponent {
-
+    public function render()
+    {
+        // TODO: Implement render() method.
+    }
 }
 
 $header = new header('header.html');

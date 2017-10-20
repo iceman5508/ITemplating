@@ -9,7 +9,10 @@ use ITemplate\iExtends\iComponent;
 use ITemplate\iExtends\iTags;
 
 class footer extends iComponent {
-
+    public function render()
+    {
+        // TODO: Implement render() method.
+    }
 }
 
 $footer = new footer('footer.html');
