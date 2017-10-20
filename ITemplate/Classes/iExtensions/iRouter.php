@@ -14,7 +14,6 @@ class iRouter
 {
     private static $route_list = array();
     private static $route_param = null;
-
     private static $component=null;
 
     /**
@@ -22,7 +21,7 @@ class iRouter
      * @param $route_param - The url param to use to pull routes
      */
     public static function runInstance($route_param){
-        if(!isset(self:: $route_param )) {
+        if(!isset(self::$route_param )) {
             self::$route_param = $route_param;
         }
     }
@@ -54,8 +53,10 @@ class iRouter
      */
    public static function scanner(){
       if(count(self::$route_list)>0 && isset($_GET[self::$route_param])){
+          $path_parts = pathinfo($_GET[self::$route_param]);
+          $data =  $path_parts['filename'];
           foreach (self::$route_list as $route => $component){
-              if($_GET[self::$route_param] == $route){
+              if($data == $route){
                   self::$component = $component;
               }
           }
