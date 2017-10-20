@@ -15,6 +15,10 @@ abstract class iComponent
     private $page;
     private static $exports = array();
 
+
+
+    public abstract function render();
+
     /**
      * Component class entry point
      * iComponent constructor.
@@ -71,16 +75,17 @@ abstract class iComponent
         unset($this->page);
     }
 
-    public final function __set($name, $value)
-    {
+    public final function __set($name, $value){
         $this->component->__set($name,$value);
     }
 
-    public final function __get($name)
-    {
+    public final function __get($name){
         return $this->component->__get($name);
     }
 
+    public final function getView(){
+        return $this->view;
+    }
 
 
 }

@@ -18,7 +18,7 @@ final class iTags
      * @param $tag - the tag to use
      * @param \ITemplate\iExtends\iComponent $component
      */
-    public static function setTag($tag, iComponent $component)
+    public static function setTag($tag, iComponent &$component)
     {
         $content = file_get_contents($component->getPage());
         foreach ($component->getAllVars() as $var => $value){

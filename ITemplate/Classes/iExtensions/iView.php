@@ -16,7 +16,7 @@ class iView extends iTemplates
      * iView setTag.
      * @param $tag - The tag to process and view
      */
-    function __setTag($tag)
+    function setTag($tag)
     {
         $this->setContent(iTags::get($tag));
 

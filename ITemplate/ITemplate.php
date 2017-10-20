@@ -8,10 +8,10 @@
 
 
 class ITemplate{
+
     private static $instance = NULL;
 
-    public static function dirHome()
-    {
+    public static function dirHome(){
         //return 	getcwd().'/';
         return dirname(dirname(__FILE__)).'/ITemplate/';
     }
