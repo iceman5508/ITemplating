@@ -19,6 +19,8 @@ abstract class iComponent
 
     public abstract function render();
 
+    public abstract function attributes();
+
     /**
      * Component class entry point
      * iComponent constructor.
@@ -27,6 +29,7 @@ abstract class iComponent
     public function __construct($page){
         $this->component = new iComponents();
         $this->page = $page;
+        $this->attributes();
     }
 
     /**
