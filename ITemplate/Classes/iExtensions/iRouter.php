@@ -17,6 +17,7 @@ class iRouter
     private static $component=null;
     public static $route = null;
 
+
     /**
      * Check if the router is called
      * @return bool
@@ -38,13 +39,17 @@ class iRouter
      * Register a specific route to a component
      * @param $route - The route that is being set
      * @param $componentLocation - The location of the php file containing the component
+     * @return false if call could not be made.
      */
     public static function call($route, $componentLocation){
         self::$route_list[$route] = array(null,$componentLocation);
-        require_once $componentLocation;
+        if(file_exists($componentLocation))
+        {
+            require_once $componentLocation;
+        }
+        return false;
 
     }
-
 
     /**
      * Register a specific route to a component, meant for routes with the same tag name
@@ -55,7 +60,6 @@ class iRouter
         self::$route_list[$route] = array(null,$componentLocation);
 
     }
-
 
     /**The answer method that goes on the answering component page
      * @param $route
@@ -72,17 +76,24 @@ class iRouter
      * Scan page for any routes
      */
     public static function scanner(){
+
         if(count(self::$route_list)>0 && isset($_GET[self::$route_param])){
             $path_parts = pathinfo($_GET[self::$route_param]);
             $data =  $path_parts['filename'];
-            foreach (self::$route_list as $route => $component){
-                if($data == $route){
-                    self::$component = $component[0];
-                    self::$route = $component[1];
+            if(isset(self::$route_list[$data])) {
+                foreach (self::$route_list as $route => $component) {
+                    if ($data == $route) {
+                        self::$component = $component[0];
+                        self::$route = $component[1];
+                    }
                 }
+            }else{
+                self::$component = null;
+                return false;
             }
         }else{
             self::$component = null;
+            return false;
         }
     }
 
@@ -94,12 +105,24 @@ class iRouter
         if(count(self::$route_list)>0 && isset($_GET[self::$route_param])){
             $path_parts = pathinfo($_GET[self::$route_param]);
             $data =  $path_parts['filename'];
-            $component = self::$route_list[$data];
-            self::$component = $component[0];
-            self::$route = $component[1];
-            require_once $component[1];
+            if(isset(self::$route_list[$data])){
+                $component = self::$route_list[$data];
+                self::$component = $component[0];
+                self::$route = $component[1];
+                if(file_exists($component[1]))
+                {
+                    require_once $component[1];
+                }
+
+            }
+            else
+            {
+                self::$component = null;
+                return false;
+            }
         }else{
             self::$component = null;
+            return false;
         }
     }
 
