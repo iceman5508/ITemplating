@@ -7,5 +7,5 @@ header,footer,main,middle can be ignored as they are example files
 
 <h2><b>Install Instructions</b></h2>
 1) Clone the repo or download the zip file<br/>
-2) Place ITempplate folder in WWW folder<br>
+2) Place ITemplate folder in WWW folder<br>
 3) Then simply include the ITemplate.php file in your project
